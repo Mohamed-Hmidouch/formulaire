@@ -11,84 +11,100 @@
 </head>
 
 <body>
-  <div class="container">
-    <form class="row  border border-danger bg-danger">
-      <section class="section1 row">
+  <div class="container d-flex justify-content-center align-items-center">
+    <form class="row  border border-danger bg-danger bg-light p-4 rounded m-5"  id="multiSectionForm" style="width: 400px;">
+      <h2 class="mb-5 col-lg-12">
+        Formulaire de travaille
+      </h2>
+      <section class="section1 row" id="section1">
         <div class="col-lg-6 gx-3">
           <label for="name" class="form-label">First Name</label>
-          <input type="text" class="form-control w-5" placeholder="First name" aria-label="First name" id="name">
+          <input name="first_name" type="text" class="form-control w-5" placeholder="First name" aria-label="First name" id="name">
+          <span id="nameError" class="form-text"></span>
         </div>
         <div class="col-lg-6">
           <label for="last_name" class="form-label">Last Name</label>
-          <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" id="last_name">
+          <input name="last_name" type="text" class="form-control" placeholder="Last name" aria-label="Last name" id="last_name">
+          <span id="lastNameError" class="form-text"></span>
         </div>
         <div class="mb-3 col-lg-6">
           <label for="age">Age:</label>
-          <input name="number" type="number" id="age" class="form-control" placeholder="Age">
+          <input name="age" type="number" id="age" class="form-control" placeholder="Age">
+          <span id="ageError" class="form-text"></span>
         </div>
         <div class="col-lg-6">
           <label class="form-label">Genre</label>
-          <div class="form-check">
-            <input type="radio" class="form-check-input" value="Male" id="male" name="gender" required>
+          <span id="RadioError" class="form-text"></span>
+          <div class="form-check" id="check_box">
+            <input type="radio" class="form-check-input" value="Male" name="gender">
             <label class="form-check-label" for="male">Male</label>
           </div>
           <div class="form-check">
-            <input type="radio" class="form-check-input" value="Female" id="female" name="gender">
+            <input type="radio" class="form-check-input" value="Female" name="gender">
             <label class="form-check-label" for="female">Female</label>
           </div>
         </div>
         <div class="d-flex justify-content-end">
-          <button type="button" class="btn btn-success">Next</button>
+          <button type="button" class="btn btn-success" class="next_btn" onclick="nextSection(2)">Next</button>
         </div>
       </section>
       <!-- Section-2 -->
-       <section class="section2 row d-none">
+       <section class="section2 row d-none" id="section2">
         <div class="mb-3 col-lg-6">
           <label for="email" class="form-label">email</label>
           <input type="email" id="email" class="form-control" placeholder="email">
+          <span id="emailError" class="form-text"></span>
         </div>
         
         <div class="mb-3 col-lg-6">
           <label for="phone" class="form-label">Num</label>
-          <input type="tel" id="phone" class="form-control" required placeholder="Numero de telphone">
+          <input type="tel" id="phone" class="form-control"  placeholder="Numero de telphone">
+          <span id="phoneError" class="form-text"></span>
         </div>
         
         <div class="mb-3 col-lg-6">
           <label for="jobTitle" class="form-label">Jobtitle</label>
-          <input type="text" id="jobTitle" class="form-control" required placeholder="Jobtitle">
+          <input type="text" id="job" class="form-control"  placeholder="Jobtitle">
+          <span id="jobError" class="form-text"></span>
         </div>
         
         <div class="mb-3 col-lg-6">
           <label for="department" class="form-label">Departement</label>
-          <input type="text" id="department" class="form-control" required placeholder="Departement">
+          <input type="text" id="department" class="form-control"  placeholder="Departement">
+          <span id="departmentError" class="form-text"></span>
         </div>
         
         <div class="mb-3 col-lg-6">
           <label for="startDate" class="form-label">Start job date</label>
-          <input type="date" id="startDate" class="form-control" required placeholder="Start job date">
+          <input type="date" id="startDate" class="form-control"  placeholder="Start job date">
         </div>
         
         <div class="mb-3 col-lg-6">
           <label for="contractType" class="form-label">Contrat type</label>
-          <select id="contractType" class="form-select" required>
-            <option selected disabled>choise type of contrat</option>
+          <select id="contractType" class="form-select">
+            <option selected>choise type of contrat</option>
             <option value="fullTime">CDN</option>
             <option value="partTime">CDI</option>
           </select>
         </div>
         <div class="d-flex justify-content-between">
-          <button type="button" class="btn btn-secondary">Previous</button>
-          <button type="button" class="btn btn-success" >Next</button>
+          <button type="button" class="btn btn-secondary" onclick="prevSection(1)">Previous</button>
+          <button type="button" class="btn btn-success"  onclick="nextSection(3)">Next</button>
       </div>
        </section>
 <!-- Section 3 -->
-<section class="section3 row d-none">
+<section class="section3 row d-none" id="section3">
   <div class="col">
     <label for="feedback" class="form-label">Ton satisfaction sur le travail:</label>
-    <textarea name="feedback" id="feedback"  class="form-control"  placeholder="enter you feedback"></textarea>
-    <div class="d-flex justify-content-between mt-3 mb-3">
-      <button type="button" class="btn btn-secondary">Previous</button>
-      <button type="button" class="btn btn-success" >Next</button>
+    <textarea name="feedback" id="feedback"  class="form-control"  placeholder="enter you feedback" id="feedback"></textarea>
+    <span id="messageError" class="form-text"></span>
+    <div class="justify-content-between mt-3 mb-3">
+      <button type="button" class="btn btn-secondary" onclick="prevSection(2)">Previous</button>
+      <button type="submit" class="btn btn-success" value="submit" onsubmit="submit_fuction(event)"> Submit </button>
+      <div class="text-center mt-3"  id="displayButtonContainer" style="display: none;">
+        <button type="button" class="btn btn-info" onclick="displayData()">Afficher les données</button>
+        <div id="displayArea"></div>
+      </div>
   </div>
   </div>
 </section>
